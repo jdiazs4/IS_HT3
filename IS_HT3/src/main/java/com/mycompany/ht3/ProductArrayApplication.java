@@ -6,7 +6,6 @@
 package com.mycompany.ht3;
 
 import java.util.*;
-import org.apache.commons.lang3.ArrayUtils;
 
 /**
  *
@@ -82,7 +81,10 @@ public class ProductArrayApplication {
             tempInicio = Arrays.copyOfRange(input, 0, x);
             tempFinal = Arrays.copyOfRange(input, x+1, input.length);
 
-            temp = ArrayUtils.addAll(tempInicio,tempFinal);
+            temp = new long[tempInicio.length + tempFinal.length];
+            
+            System.arraycopy( tempInicio, 0, temp, 0, tempInicio.length );
+            System.arraycopy( tempFinal, 0, temp, tempInicio.length, tempFinal.length );
 
             long sum = Arrays.stream(temp).reduce((a, b) -> a * b).orElse(1);
             resultado[x]=sum;
